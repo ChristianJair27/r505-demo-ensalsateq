@@ -21,6 +21,8 @@ var DAYS=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
 var DAY_A=[["domingo"],["lunes"],["martes"],["miercoles"],["jueves"],["viernes"],["sabado","sabados"]];
 /* Horario de ejemplo por ritmo (entre semana / sábado) */
 var SAMPLE_T={salsa:["7:00 pm","10:00 am"],bachata:["8:00 pm","11:00 am"],cumbia:["9:00 pm","12:00 pm"],any:["8:00 pm","11:00 am"]};
+var SAMPLE_BR={juriquilla:{salsa:["8:30 pm"],bachata:["8:30 pm"],cumbia:["9:30 pm"],any:["8:30 pm"]},auditorio:{salsa:["7:00 pm","4:00 pm"],bachata:["8:00 pm","5:00 pm"],cumbia:["9:00 pm","6:00 pm"],any:["8:00 pm","5:00 pm"]}};
+function st(br,k){return (SAMPLE_BR[br]&&SAMPLE_BR[br][k])||SAMPLE_T[k]||SAMPLE_T.any;}
 var EVENTS=[
  {id:"rumbera",n:"Noche Rumbera en Zákia",date:new Date(2026,10,14,23,59),txt:"**Noche Rumbera en Zákia**, sábado 14 de noviembre, en Santas Alitas Zákia (Paseo de Zakia Pte 4100). Clase de salsa a las 7:00 pm y música en vivo con social desde las 8:00 pm. Reservaciones al 561 567 2389."},
  {id:"social",n:"Social Night (Level Up)",date:new Date(2026,10,21,23,59),txt:"**Social Night · Social Level Up**, sábado 21 de noviembre, en EnsalsateQ Corregidora. Clase de 8:00 a 9:00 pm y social de 9:00 pm a 1:30 am con DJ Quest."}
@@ -147,7 +149,7 @@ function reset(){
 }
 function branchList(){return BR_IDS.map(function(id,i){return (i+1)+". "+BR[id].n}).join("\n");}
 function daysTxt(id){var ds=BR[id].days;if(ds.length===6)return"lunes a sábado";return ds.map(function(d){return DAYS[d]}).join(" y ");}
-function timeFor(style,day){var t=SAMPLE_T[style]||SAMPLE_T.any;return day===6?t[1]:t[0];}
+function timeFor(style,day,br){var t=st(br,style);return day===6&&t[1]?t[1]:t[0];}
 
 function answer(intent,ents,raw){
  S.last=intent;
@@ -199,7 +201,7 @@ function answer(intent,ents,raw){
 function horariosBranch(id,style){
  var b=BR[id],t="Horarios en **"+b.n+"** ("+daysTxt(id)+"):\n\n";
  var ks=style?[style]:["salsa","bachata","cumbia"];
- t+=ks.map(function(k){return"• "+STY[k].n+": "+(b.days.indexOf(1)>-1?"lun a vie "+SAMPLE_T[k][0]+" · sáb "+SAMPLE_T[k][1]:"martes y jueves "+SAMPLE_T[k][0])}).join("\n");
+ t+=ks.map(function(k){return"• "+STY[k].n+": "+(b.days.indexOf(1)>-1?"lun a vie "+st(id,k)[0]+" · sáb "+st(id,k)[1]:"martes y jueves "+st(id,k)[0])}).join("\n");
  t+="\n\n¿Te aparto una clase muestra en esta sucursal?";
  S.mode=null;
  return bot(t,{tag:"Horarios de ejemplo; se cargan los reales de cada sucursal",chips:["Sí, apartar clase muestra","Ver ubicación","Otra sucursal"],intent:"horarios"}).then(function(){S.mode="offer_book";S.branchCtx=id;S.styleCtx=style||null;});
@@ -236,7 +238,7 @@ function nextStep(){
 function first(n){return n.split(" ")[0];}
 function nextDate(day){var d=new Date(),diff=(day-d.getDay()+7)%7;if(diff===0&&d.getHours()>=19)diff=7;d.setDate(d.getDate()+diff);return d;}
 function fdate(day){var d=nextDate(day);return cap(DAYS[day])+" "+d.getDate()+" de "+d.toLocaleDateString("es-MX",{month:"long"});}
-function summary(){var d=S.d;return [["Nombre",d.name],["Sucursal",BR[d.branch].n],["Ritmo",d.style==="any"?"Por definir (recomienda el maestro)":STY[d.style].n],["Día",fdate(d.day)],["Hora",timeFor(d.style,d.day)]];}
+function summary(){var d=S.d;return [["Nombre",d.name],["Sucursal",BR[d.branch].n],["Ritmo",d.style==="any"?"Por definir (recomienda el maestro)":STY[d.style].n],["Día",fdate(d.day)],["Hora",timeFor(d.style,d.day,d.branch)]];}
 function bookingInput(raw,det){
  var text=det.text,toks=det.toks,d=S.d;
  if(det.scores.cancelar>0&&det.scores.cancelar>=det.score){S.mode=null;S.step=null;S.d={};return bot("Sin problema, cancelé el registro. ¿Te ayudo con algo más?",{chips:MAIN});}
