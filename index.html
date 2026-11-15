@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Asistente de WhatsApp con IA para EnsalsateQ · Demo</title>
+<meta name="description" content="Demo interactiva del asistente de WhatsApp con IA para EnsalsateQ Dance Center: responde 24/7, agenda clases muestra y pasa la conversación a recepción.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#2b0710">
+<meta property="og:title" content="Tu asistente de WhatsApp para EnsalsateQ">
+<meta property="og:description" content="Demo interactiva: pruébalo como si fueras un alumno nuevo.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <div class="brand"><img src="logo.svg" alt="EnsalsateQ Dance Center" width="40" height="40"><span>EnsalsateQ <small>Dance Center</small></span></div>
+    <a class="top-cta" href="#llamada">Agendar llamada</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-txt">
+      <p class="kicker">Demo para EnsalsateQ Dance Center</p>
+      <h1>Tu asistente de WhatsApp para <span class="grad">EnsalsateQ</span></h1>
+      <p class="lead">Contesta al instante las preguntas de alumnos nuevos, agenda clases muestra en cualquiera de las 7 sucursales y pasa la conversación a recepción cuando hace falta. Todo dentro del mismo WhatsApp que ya usan.</p>
+      <div class="hero-btns">
+        <a class="btn btn-primary" href="#demo">Probar la demo</a>
+        <a class="btn btn-ghost" href="#flujo">Cómo funcionaría</a>
+      </div>
+      <ul class="hero-pts">
+        <li>Responde 24/7, también en fin de semana</li>
+        <li>Registra nombre, sucursal, ritmo y día</li>
+        <li>Avisa a la recepción de cada sucursal</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="demo" class="demo">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Pruébalo como si fueras un alumno nuevo</h2>
+      <p>Escribe con tus palabras (con o sin acentos, con faltas de ortografía) o toca una de las opciones. Intenta: <em>"quiero una clase de bachata en juriquilla el jueves"</em>.</p>
+    </div>
+    <div class="demo-grid">
+      <div class="phone" aria-label="Simulador de WhatsApp">
+        <div class="wa-head">
+          <img src="logo.svg" alt="" width="38" height="38">
+          <div class="wa-id"><strong>EnsalsateQ Dance Center</strong><span id="waStatus">en línea</span></div>
+          <button class="wa-reset" id="resetBtn" type="button" title="Reiniciar conversación" aria-label="Reiniciar conversación">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+          </button>
+        </div>
+        <div class="wa-body" id="chat" role="log" aria-live="polite"></div>
+        <div class="wa-chips" id="chips"></div>
+        <form class="wa-input" id="form" autocomplete="off">
+          <input id="msg" type="text" placeholder="Escribe un mensaje" aria-label="Escribe un mensaje" maxlength="300">
+          <button type="submit" aria-label="Enviar"><svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
+        </form>
+      </div>
+      <aside class="panel" aria-label="Lo que ve su equipo">
+        <div class="panel-head"><span class="dot"></span> Lo que ve su equipo</div>
+        <p class="panel-sub">Cada registro o solicitud de asesor llega a la recepción de la sucursal elegida, con los datos ya ordenados.</p>
+        <div id="feed" class="feed"><div class="feed-empty">Aún no hay avisos. Agenda una clase muestra o pide hablar con una persona en el chat.</div></div>
+        <p class="note">Sucursales, servicios, eventos y proceso de la tienda vienen de su sitio web e Instagram. Los horarios de clase y las horas de la clase muestra son de ejemplo; en la implementación se cargan los reales de cada sucursal.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="flujo" class="flow">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Cómo funcionaría en su flujo</h2>
+      <p>Se conecta a su número de WhatsApp actual. Sus recepcionistas siguen atendiendo como siempre; el asistente resuelve lo repetitivo y les entrega lo importante.</p>
+    </div>
+    <ol class="steps">
+      <li><span class="n">1</span><div><h3>El cliente escribe</h3><p>Desde Instagram, Facebook, un póster o su sitio web llega a WhatsApp preguntando por clases, horarios, sociales o zapatillas.</p></div></li>
+      <li><span class="n">2</span><div><h3>La IA responde 24/7</h3><p>Contesta en segundos con la información de EnsalsateQ: ritmos, sucursales, cursos intensivos, eventos y formas de pago. Entiende cómo escribe la gente, aunque sea con faltas.</p></div></li>
+      <li><span class="n">3</span><div><h3>Agenda o registra</h3><p>Aparta la clase muestra o el lugar en el curso: toma nombre, sucursal, ritmo y día, y confirma con un folio.</p></div></li>
+      <li><span class="n">4</span><div><h3>Aviso a recepción por sucursal</h3><p>El registro llega a la recepción o al gerente de esa sucursal (WhatsApp, correo o un panel). Si el cliente pide una persona, la conversación se transfiere con todo el contexto.</p></div></li>
+      <li><span class="n">5</span><div><h3>Seguimiento</h3><p>Recordatorio el día de la clase, mensaje después de la clase muestra para inscribirse y aviso de próximos sociales o cursos a quien ya mostró interés.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="feats">
+  <div class="wrap">
+    <div class="sec-head"><h2>Funcionalidades</h2></div>
+    <div class="feat-grid">
+      <div class="feat"><h3>Respuestas al instante</h3><p>Clases grupales, cursos de 10 horas, particulares, coreografías para XV años y bodas, clases para empresas y cursos online.</p></div>
+      <div class="feat"><h3>Agenda de clases muestra</h3><p>Registro guiado por sucursal, ritmo y día, con confirmación y recordatorio automático.</p></div>
+      <div class="feat"><h3>7 sucursales en un número</h3><p>Corregidora, Av. de la Luz, Alcanfores, Auditorio Josefa, Juriquilla, Hilvana y El Refugio, cada una con sus horarios y su ubicación.</p></div>
+      <div class="feat"><h3>Paso a una persona</h3><p>Cuando el cliente lo pide o el tema lo requiere (quejas, pagos, casos especiales), transfiere a recepción sin perder la conversación.</p></div>
+      <div class="feat"><h3>Eventos y sociales</h3><p>Informa de sociales, talleres y noches de baile, y aparta lugares o comparte el contacto de reservaciones.</p></div>
+      <div class="feat"><h3>Tienda de zapatillas</h3><p>Explica el proceso de pedido de @danceshoes_ensalsateq: talla según catálogo, anticipo y entrega.</p></div>
+      <div class="feat"><h3>Seguimiento y difusión</h3><p>Recordatorios, mensajes después de la clase muestra y avisos de nuevos cursos a quien ya preguntó.</p></div>
+      <div class="feat"><h3>Reportes</h3><p>Cuántos preguntaron, cuántos agendaron y de qué sucursal, para medir qué publicación o póster trae más alumnos.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="llamada" class="cta">
+  <div class="wrap cta-in">
+    <h2>¿Lo vemos con su flujo real?</h2>
+    <p>En una llamada de 15 minutos revisamos cómo atienden hoy por WhatsApp y qué debería contestar el asistente en cada sucursal. Si tienen en mente otro sistema, como control de alumnos o pagos por sucursal, también lo platicamos.</p>
+    <a class="btn btn-wa" id="ctaWa" href="https://wa.me/524423723972?text=Hola%20Christian%2C%20vimos%20la%20demo%20del%20asistente%20de%20WhatsApp%20para%20EnsalsateQ%20y%20queremos%20agendar%20una%20llamada%20de%2015%20minutos." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3z"/></svg>
+      Agendar una llamada de 15 min
+    </a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Demo preparada para EnsalsateQ Dance Center. Información pública tomada de ensalsateq.com y de su Instagram; horarios y datos marcados como ejemplo no son oficiales.</p>
+    <p class="made">Hecho por <a href="https://revolution505.com" target="_blank" rel="noopener">Revolution505</a> · Querétaro</p>
+  </div>
+</footer>
+<script src="bot.js?v=1"></script>
+</body>
+</html>
